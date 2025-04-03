@@ -1,0 +1,58 @@
+Here are the step-by-step commands to set up Nginx on your EC2 instance:
+
+1. Install Nginx:
+```bash
+sudo apt update
+sudo apt install nginx -y
+```
+
+2. Create/edit the Nginx configuration:
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+3. Replace the content with this configuration:
+```nginx
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+4. Test Nginx configuration:
+```bash
+sudo nginx -t
+```
+
+5. Restart Nginx:
+```bash
+sudo systemctl restart nginx
+```
+
+6. Enable Nginx to start on boot:
+```bash
+sudo systemctl enable nginx
+```
+
+7. Check Nginx status:
+```bash
+sudo systemctl status nginx
+```
+
+Don't forget to:
+1. Update EC2 security group to allow inbound traffic on port 80
+2. Make sure your Node.js app is running on port 3000
+
+Now you can access your application using just:
+```
+http://your-ec2-public-ip
+```

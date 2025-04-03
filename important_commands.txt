@@ -1,0 +1,27 @@
+# PM2 Commands
+pm2 start ecosystem.config.js --env production  # Start application
+pm2 stop task-manager                          # Stop application
+pm2 restart task-manager                       # Restart application
+pm2 delete task-manager                        # Remove from PM2
+pm2 status                                     # Check status
+pm2 logs task-manager                          # View logs
+pm2 monit                                      # Monitor CPU/Memory
+
+# Nginx Commands
+sudo systemctl start nginx                     # Start Nginx
+sudo systemctl stop nginx                      # Stop Nginx
+sudo systemctl restart nginx                   # Restart Nginx
+sudo systemctl status nginx                    # Check status
+sudo nginx -t                                  # Test configuration
+sudo tail -f /var/log/nginx/error.log         # View error logs
+sudo tail -f /var/log/nginx/access.log        # View access logs
+
+# SSL/Certbot Commands
+sudo certbot renew                            # Renew SSL certificates
+sudo certbot certificates                      # List certificates
+sudo systemctl status certbot.timer           # Check auto-renewal
+
+# Application Status Check
+sudo lsof -i :3000                            # Check port 3000
+sudo lsof -i :80                              # Check port 80
+sudo lsof -i :443                             # Check port 443

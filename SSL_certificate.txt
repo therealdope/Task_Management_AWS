@@ -1,0 +1,47 @@
+To set up SSL certificate for your EC2 instance using Let's Encrypt and Certbot, follow these steps:
+taskmanage.duckdns.org
+
+1. First, install Certbot:
+```bash
+sudo apt install certbot python3-certbot-nginx -y
+```
+
+2. You'll need a domain name pointing to your EC2 instance. Update your Nginx configuration with your domain:
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+Update the configuration:
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com www.your-domain.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+3. Obtain SSL certificate:
+```bash
+sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+```
+
+4. Follow the prompts from Certbot
+
+5. Verify auto-renewal is set up:
+```bash
+sudo systemctl status certbot.timer
+```
+
+Don't forget to:
+1. Add domain DNS A record pointing to your EC2 IP
+2. Update EC2 security group to allow HTTPS (port 443)
+
+Would you like help with any specific part of this process?
