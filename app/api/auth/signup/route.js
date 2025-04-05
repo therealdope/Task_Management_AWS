@@ -2,7 +2,7 @@ import { executeQuery } from '@/lib/db/database';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { v4 as uuidv4 } from 'uuid';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export async function POST(request) {
   try {

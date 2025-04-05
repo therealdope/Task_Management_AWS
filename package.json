@@ -39,7 +39,9 @@
     "@radix-ui/react-toggle-group": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.6",
     "autoprefixer": "^10.4.20",
-    "bcrypt": "^5.1.1",
+    // Remove this line
+    // "bcrypt": "^5.1.1",
+    // You already have bcryptjs, make sure to use it instead of bcrypt in your code
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
