@@ -41,7 +41,7 @@ next-env.d.ts
 .idea/
 
 # PM2
-ecosystem.config.js
+# ecosystem.config.js
 
 # Logs
 logs

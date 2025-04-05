@@ -25,3 +25,8 @@ sudo systemctl status certbot.timer           # Check auto-renewal
 sudo lsof -i :3000                            # Check port 3000
 sudo lsof -i :80                              # Check port 80
 sudo lsof -i :443                             # Check port 443
+
+
+
+stress --cpu $(nproc) --timeout 300
+pkill stress
