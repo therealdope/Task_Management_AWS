@@ -7,7 +7,7 @@ A modern task management application built with Next.js and AWS's RDS MySQL, fea
 ### Video Preview
 - Both EC2 and Vercel
 
-[![Watch the video](https://img.youtube.com/vi/7_ihqWgj3sg/0.jpg)](https://youtu.be/xbcYH4EKyPY)
+[![Watch the video](https://img.youtube.com/vi/xbcYH4EKyPY/0.jpg)](https://youtu.be/xbcYH4EKyPY)
 
 **Note:** The AWS EC2, RDS MySQL instance is currently stopped to minimize costs. Please contact the administrator if you'd like to test the live demo.
 - EC2 and Vercel both -> live Websites uses RDS MySQL instance, so it will not work until the AWS RDS mySQL is started.
