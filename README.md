@@ -1,7 +1,17 @@
-```markdown:/Users/shwetkheni/Desktop/CS/web-dev/AWS/taskmanager/README.md
 # Task Manager Application
 
-A modern task management application built with Next.js and MySQL, featuring user authentication, task management, and theme customization.
+A modern task management application built with Next.js and AWS's RDS MySQL, featuring user authentication, task management, and theme customization.
+
+[![🖥️ EC2 Instance](https://img.shields.io/badge/🖥️-EC2%20Instance-orange)](https://taskmanage.duckdns.org/) [![⚡ Vercel Deploy](https://img.shields.io/badge/⚡-Vercel%20Deploy-blue)](https://task-management-skheni.vercel.app)
+---
+### Video Preview
+- Both EC2 and Vercel
+
+[![Watch the video](https://img.youtube.com/vi/7_ihqWgj3sg/0.jpg)](https://youtu.be/xbcYH4EKyPY)
+
+**Note:** The AWS EC2, RDS MySQL instance is currently stopped to minimize costs. Please contact the administrator if you'd like to test the live demo.
+- EC2 and Vercel both -> live Websites uses RDS MySQL instance, so it will not work until the AWS RDS mySQL is started.
+- the database will be started upon request.
 
 ## Features
 
@@ -16,9 +26,8 @@ A modern task management application built with Next.js and MySQL, featuring use
 
 - Next.js
 - React
-- MySQL
 - TailwindCSS
-- AWS RDS
+- AWS RDS mySQL
 - AWS EC2
 
 ## Getting Started
@@ -49,7 +58,7 @@ npm run dev
 
 Run the schema file:
 ```bash
-mysql -h your-database-host -u your-user -p your-database < lib/db/schema.sql
+mysql -h your-database-host(END POINT of RSD mySQL) -u your-user -P your-database-port -p your-password < lib/db/schema.sql
 ```
 
 ## Production Deployment
@@ -65,12 +74,17 @@ npm run start 3000
 ```
 
 ## AWS Deployment
-
+- while doing this do not forget to add port in security group
 1. Configure RDS MySQL instance
 2. Set up EC2 instance
 3. Install dependencies on EC2
 4. Use PM2 for process management
+5. Configure environment variables
+6. Use nginx for reverse proxy refer to nginx_setup.txt file
+7. Set up domain with DuckDNS
+8. Set up SSL with Certbot refer to certbot_setup.txt file
 
+- check important_commands.txt for important commands
 ## Project Structure
 
 ```plaintext
@@ -81,7 +95,10 @@ npm run start 3000
 └── styles/          # Global styles
 ```
 
-## License
+## Contributing
 
-MIT License
-```
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
