@@ -2,6 +2,8 @@
 
 A modern task management application built with Next.js and AWS's RDS MySQL, featuring user authentication, task management, and theme customization.
 
+> Currently, the database is temporarily stopped. Please watch a short video to see the project in action.
+
 [![🖥️ EC2 Instance](https://img.shields.io/badge/🖥️-EC2%20Instance-orange)](https://taskmanage.duckdns.org/) [![⚡ Vercel Deploy](https://img.shields.io/badge/⚡-Vercel%20Deploy-blue)](https://task-management-skheni.vercel.app)
 ---
 ### Video Preview
