@@ -9,13 +9,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
-import { Loader2 } from "lucide-react"
+import { Loader2, User } from "lucide-react"
 
 export default function LoginPage() {
   const router = useRouter()
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState("login")  // Add this line
+  const [activeTab, setActiveTab] = useState("login")
 
   // Login form state
   const [loginEmail, setLoginEmail] = useState("")
@@ -28,23 +28,22 @@ export default function LoginPage() {
   const [signupName, setSignupName] = useState("")
 
   const validateEmail = (email) => {
-    return email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-  };
-  
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     
     if (!validateEmail(loginEmail)) {
       toast({
         title: "Invalid email",
         description: "Please enter a valid email address",
         variant: "destructive",
-      });
-      return;
+      })
+      return
     }
-  
-    setIsLoading(true);
-    
+
+    setIsLoading(true)
     try {
       const response = await fetch('/api/auth', {
         method: 'POST',
@@ -56,34 +55,77 @@ export default function LoginPage() {
           password: loginPassword,
           action: 'login',
         }),
-      });
-  
-      const data = await response.json();
-  
+      })
+
+      const data = await response.json()
+
       if (!response.ok) {
-        throw new Error(data.error);
+        throw new Error(data.error)
       }
-  
-      // Store user data in cookie
-      document.cookie = `auth-token=${data.id}; path=/; max-age=86400`;
-      document.cookie = `user-name=${data.name}; path=/; max-age=86400`;
-  
+
+      // Set cookie
+      document.cookie = `auth-token=${data.id}; path=/; max-age=${7 * 24 * 60 * 60}`
+      document.cookie = `user-name=${encodeURIComponent(data.name)}; path=/; max-age=${7 * 24 * 60 * 60}`
+
       toast({
         title: "Login successful",
-        description: "Welcome back!",
-      });
-  
-      router.push("/dashboard");
+        description: `Welcome back, ${data.name}!`,
+      })
+
+      router.push('/dashboard')
     } catch (error) {
       toast({
         title: "Login failed",
         description: error.message,
         variant: "destructive",
-      });
+      })
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
+
+  // Dummy login function
+  const handleDummyLogin = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: 'dummy@gmail.com',
+          password: 'dummy@123',
+          action: 'login',
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error)
+      }
+
+      // Set cookie
+      document.cookie = `auth-token=${data.id}; path=/; max-age=${7 * 24 * 60 * 60}`
+      document.cookie = `user-name=${encodeURIComponent(data.name)}; path=/; max-age=${7 * 24 * 60 * 60}`
+
+      toast({
+        title: "Demo login successful",
+        description: `Welcome, ${data.name}!`,
+      })
+
+      router.push('/dashboard')
+    } catch (error) {
+      toast({
+        title: "Demo login failed",
+        description: error.message,
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -214,6 +256,28 @@ export default function LoginPage() {
                   ) : (
                     "Login"
                   )}
+                </Button>
+                
+                {/* Dummy Login Button */}
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">
+                      Or try demo
+                    </span>
+                  </div>
+                </div>
+                
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  className="w-full border border-purple-200 hover:bg-purple-200 hover:text-purple-500" 
+                  onClick={handleDummyLogin}
+                  disabled={isLoading}
+                >
+                  Demo Login
                 </Button>
               </form>
             </TabsContent>

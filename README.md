@@ -2,7 +2,7 @@
 
 A modern task management application built with Next.js and AWS's RDS MySQL, featuring user authentication, task management, and theme customization.
 
-> Currently, the database is temporarily stopped. Please watch a short video to see the project in action.
+> Currently, the AWS is temporarily stopped. Please go to Vercel deployment to see the project in action.
 
 [![🖥️ EC2 Instance](https://img.shields.io/badge/🖥️-EC2%20Instance-orange)](https://taskmanage.duckdns.org/) [![⚡ Vercel Deploy](https://img.shields.io/badge/⚡-Vercel%20Deploy-blue)](https://task-management-skheni.vercel.app)
 ---
@@ -12,8 +12,8 @@ A modern task management application built with Next.js and AWS's RDS MySQL, fea
 [![Watch the video](https://img.youtube.com/vi/xbcYH4EKyPY/0.jpg)](https://youtu.be/xbcYH4EKyPY)
 
 **Note:** The AWS EC2, RDS MySQL instance is currently stopped to minimize costs. Please contact the administrator if you'd like to test the live demo.
-- EC2 and Vercel both -> live Websites uses RDS MySQL instance, so it will not work until the AWS RDS mySQL is started.
 - the database will be started upon request.
+- vercel database is changed to Avien mysql so project can be deployed on vercel and can be used anytime. 
 
 ## Features
 
