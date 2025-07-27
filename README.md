@@ -13,7 +13,7 @@ A modern task management application built with Next.js and AWS's RDS MySQL, fea
 
 **Note:** The AWS EC2, RDS MySQL instance is currently stopped to minimize costs. Please contact the administrator if you'd like to test the live demo.
 - the database will be started upon request.
-- vercel database is changed to Avien mysql so project can be deployed on vercel and can be used anytime. 
+- vercel database is changed to Aiven mysql so project can be deployed on vercel and can be used anytime. 
 
 ## Features
 
